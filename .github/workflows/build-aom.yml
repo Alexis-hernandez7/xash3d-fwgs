@@ -11,6 +11,7 @@ jobs:
           submodules: recursive
       - name: Build
         run: |
+          pip install clang-format --break-system-packages || pip install clang-format
           chmod +x waf
           ./waf configure --ps3 --gamedir=aom --static-linking=filesystem_stdio,ref_soft,ref_gl,menu,server,client
           ./waf build
