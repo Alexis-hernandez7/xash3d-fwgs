@@ -4,7 +4,7 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ps3dev/ps3dev:latest
+    container: mayo2853/ps3dev-latest:latest
     steps:
       - uses: actions/checkout@v4
         with:
