@@ -1,0 +1,20 @@
+name: Build AoM PKG
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ps3dev/ps3dev:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Build
+        run: |
+          ./waf configure --ps3 --gamedir=aom --static-linking=filesystem_stdio,ref_soft,ref_gl,menu,server,client
+          ./waf build
+      - name: Upload PKG
+        uses: actions/upload-artifact@v4
+        with:
+          name: aom-pkg
+          path: build_aom/engine/pkg/EBOOT.pkg
